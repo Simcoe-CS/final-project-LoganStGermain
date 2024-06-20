@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+  </style>
+</head>
+<body> 
+  <canvas id="canvas" width="" height=""></canvas>
+
+  <script>
+    canvas.width = window.innerWidth - 15;
+    canvas.height = window.innerHeight - 37;
+       let c = canvas.getContext("2d");
+  
+  
+  window.addEventListener("keydown", move2); //When the key is down call move
+
+
+  let x2 = canvas.width/8, y2=canvas.height/2;
+    let xSpeed = 3, ySpeed = 3;
+    let x = canvas.width/2, y=canvas.height/2;
+    let size = 10;
+  function move2(e){
+    //Check which arrow key and change the x or y position
+    if(e.key == "ArrowDown") y2 += 5;
+    else if(e.key == "ArrowUp") y2 -= 5;
+
+
+    c.clearRect(0,0,canvas.width, canvas.height)
+    c.beginPath();
+    c.strokeRect(x2, y2, 25, 150, 2*Math.PI);
+    c.arc(this.x, this.y, this.size, 2*Math.PI);
+    c.fill();
+     if (this.x > canvas.width || this.x < 0) this.xSpeed *= -1;
+    if (this.y > canvas.height || this.y < 0) this.ySpeed *= -1;
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
+    this.draw();
+      }
+
+
+    function move(){
+      c.clearRect(0,0,canvas.width, canvas.height);
+      for(let i = 0; i < ball.length; i++){
+        ball[i].update();
+      }
+      window.requestAnimationFrame(move);
+    }
+
+
+  </script>
+</body>
+
+</html>
